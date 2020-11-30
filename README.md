@@ -7,3 +7,6 @@ This is my front end capstone project for Nashville Software School. This site i
 
 ## Wireframe
 [see it here](https://www.figma.com/file/Ep3Ztus0QWnoCGbVLVqwBy/Untitled?node-id=1%3A7)
+
+## Video
+[see it here](https://www.loom.com/share/a78d5d7a18e34e60a88c606dc36d1005)
