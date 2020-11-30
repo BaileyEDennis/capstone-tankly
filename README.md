@@ -4,3 +4,6 @@ This is my front end capstone project for Nashville Software School. This site i
 
 ## ERD
 ![image](./src/images/tankly-erd.png)
+
+## Wireframe
+[see it here](https://www.figma.com/file/Ep3Ztus0QWnoCGbVLVqwBy/Untitled?node-id=1%3A7)
