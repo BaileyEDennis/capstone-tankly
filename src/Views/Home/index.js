@@ -1,9 +1,25 @@
 import React from 'react';
+import Auth from '../../Components/Auth';
+import Loader from '../../Components/Loader';
+import PublicTanks from '../PublicTanks';
 
-export default function Home() {
+export default function Home({ user }) {
+  const loadComponent = () => {
+    let component = '';
+    if (user === null) {
+      component = <Loader />;
+    } else if (user) {
+      component = <PublicTanks />;
+    } else {
+      component = <Auth />;
+    }
+    return component;
+  };
+
   return (
-    <div className='d-flex justify-content-center m5'>
-      <h1>Home Tanks Here</h1>
+    <div className='display-area'>
+      <h1>Welcome to Tankly!</h1>
+      {loadComponent()}
     </div>
   );
 }
