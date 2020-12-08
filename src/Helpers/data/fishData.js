@@ -17,7 +17,7 @@ const getUserFish = (userId) => new Promise((resolve, reject) => {
 });
 
 const getTankFish = (tankId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/tank-fish.json?orderBy="tankId"&equalTo="${tankId}"`).then((response) => {
+  axios.get(`${baseUrl}/tank-fish.json?orderBy="fishId"&equalTo="${tankId}"`).then((response) => {
     const fishResponse = response.data;
     const fishArray = [];
     if (fishResponse) {
@@ -54,6 +54,8 @@ const updateFish = (object) => new Promise((resolve, reject) => {
     .then(resolve).catch((error) => reject(error));
 });
 
+const deleteFish = (firebaseKey) => axios.delete(`${baseUrl}/fish/${firebaseKey}.json`);
+
 const deleteFishofTanks = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${baseUrl}/tank-fish/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
 });
@@ -65,5 +67,6 @@ export {
   createFish,
   addFishOfTanks,
   updateFish,
+  deleteFish,
   deleteFishofTanks,
 };
