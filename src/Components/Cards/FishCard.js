@@ -13,10 +13,8 @@ export default function FishCard({ fish, fishDataFunc, onUpdate }) {
           <p className="card-text">{fish.notes}</p>
           <div className="card-btns">
             <AppModal
-              title={'Update Pin'}
-              buttonLabel={'Update Pin'}
-              btnColor={'info'}
-              icon={'fa-plus-circle'}
+              title={'Update Your Fish'}
+              buttonLabel={'Update Fish'}
             >
               <FishForm fish={fish} onUpdate={onUpdate}></FishForm>
             </AppModal>

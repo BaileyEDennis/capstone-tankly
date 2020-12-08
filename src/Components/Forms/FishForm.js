@@ -40,15 +40,15 @@ export default class FishForm extends Component {
 
   handleChange = (e) => {
     if (e.target.name === 'filename') {
-      this.setState({ imgUrl: '' });
+      this.setState({ imageUrl: '' });
       const storageRef = firebase.storage().ref();
       const imageRef = storageRef.child(
         `tankly/${this.state.userId}/${Date.now()}${e.target.files[0].name}`,
       );
 
       imageRef.put(e.target.files[0]).then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((imgUrl) => {
-          this.setState({ imgUrl });
+        snapshot.ref.getDownloadURL().then((imageUrl) => {
+          this.setState({ imageUrl });
         });
       });
     } else {
@@ -114,7 +114,7 @@ export default class FishForm extends Component {
               deleteFishofTanks(tankFish.firebaseKey);
             });
           });
-          this.props.onUpdate?.(this.props.pin.firebaseKey);
+          this.props.onUpdate?.(this.props.fish.firebaseKey);
           this.setState({ success: true });
         });
     }
@@ -159,14 +159,14 @@ export default class FishForm extends Component {
               required
             />
           </div>
-          <label>Pin Website</label>
+          <label>Gender</label>
           <div>
             <input
               type='text'
               name='sex'
               value={this.state.sex}
               onChange={this.handleChange}
-              placeholder='Sex'
+              placeholder='Gender'
               className='form-control form-control-lg m-1'
               required
             />
