@@ -12,4 +12,23 @@ const getAllUserTanks = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getAllUserTanks;
+const getTankDecors = (tankId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tank-decor.json?orderBy="tankId"&equalTo="${tankId}"`).then((response) => {
+    const tankResponse = response.data;
+    const tankArray = [];
+    if (tankResponse) {
+      Object.keys(tankResponse).forEach((item) => {
+        tankArray.push(tankResponse[item]);
+      });
+    }
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
+const getSingleTank = (tankId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tanks/${tankId}.json`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export { getAllUserTanks, getTankDecors, getSingleTank };

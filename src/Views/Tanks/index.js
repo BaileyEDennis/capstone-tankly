@@ -1,5 +1,5 @@
 import React from 'react';
-import getAllUserTanks from '../../Helpers/data/tankData';
+import { getAllUserTanks } from '../../Helpers/data/tankData';
 import TankCard from '../../Components/Cards/TankCard';
 import Loader from '../../Components/Loader';
 import getUid from '../../Helpers/data/authData';
