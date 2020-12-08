@@ -31,4 +31,25 @@ const getSingleTank = (tankId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { getAllUserTanks, getTankDecors, getSingleTank };
+const getTanks = () => new Promise((resolve, reject) => {
+  axios
+    .get(`${baseUrl}/tanks.json`)
+    .then((response) => {
+      const tanks = response.data;
+      const tanksArray = [];
+      if (tanks) {
+        Object.keys(tanks).forEach((tankId) => {
+          tanksArray.push(tanks[tankId]);
+        });
+      }
+      resolve(tanksArray);
+    })
+    .catch((error) => reject(error));
+});
+
+export {
+  getAllUserTanks,
+  getTankDecors,
+  getSingleTank,
+  getTanks,
+};

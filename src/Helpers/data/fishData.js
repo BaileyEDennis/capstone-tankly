@@ -35,4 +35,35 @@ const getSingleFish = (fishId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { getTankFish, getUserFish, getSingleFish };
+const createFish = (object) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/fish.json`, object)
+    .then((response) => {
+      axios.patch(`${baseUrl}/fish/${response.data.name}.json`, { firebaseKey: response.data.name }).then(resolve);
+    }).catch((error) => reject(error));
+});
+
+const addFishOfTanks = (dataObject) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/tank-fish.json`, dataObject).then((response) => {
+    const update = { firebaseKey: response.data.name };
+    axios.patch(`${baseUrl}/tank-fish/${response.data.name}.json`, update);
+  }).catch((error) => reject(error));
+});
+
+const updateFish = (object) => new Promise((resolve, reject) => {
+  axios.patch(`${baseUrl}/fish/${object.firebaseKey}.json`, object)
+    .then(resolve).catch((error) => reject(error));
+});
+
+const deleteFishofTanks = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${baseUrl}/tank-fish/${firebaseKey}.json`).then((response) => { if (response.statusText === 'OK') { resolve(0); } }).catch((error) => reject(error));
+});
+
+export {
+  getTankFish,
+  getUserFish,
+  getSingleFish,
+  createFish,
+  addFishOfTanks,
+  updateFish,
+  deleteFishofTanks,
+};
