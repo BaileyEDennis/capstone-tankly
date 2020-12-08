@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: 'AIzaSyARyi3xkyiIqkpC3RkDniuommdRhIOUkbk',
-  authDomain: 'tankly-4325d.firebaseapp.com',
-  databaseURL: 'https://tankly-4325d-default-rtdb.firebaseio.com',
-  projectId: 'tankly-4325d',
-  storageBucket: 'tankly-4325d.appspot.com',
-  messagingSenderId: '941109667790',
-  appId: '1:941109667790:web:eda8c5ed4139b122162d9f',
-  measurementId: 'G-1ETB7WR3MK',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 export default firebaseConfig;
