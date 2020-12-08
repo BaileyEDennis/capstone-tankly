@@ -4,6 +4,7 @@ import FishCard from '../../Components/Cards/FishCard';
 import Loader from '../../Components/Loader';
 import getUid from '../../Helpers/data/authData';
 import AppModal from '../../Components/Modal';
+import FishForm from '../../Components/Forms/FishForm';
 
 export default class Fish extends React.Component {
   state = {
@@ -12,10 +13,10 @@ export default class Fish extends React.Component {
   };
 
   componentDidMount() {
-    this.getDecs();
+    this.getFish();
   }
 
-  getDecs = () => {
+  getFish = () => {
     const currentUserId = getUid();
     getUserFish(currentUserId).then((response) => {
       this.setState(
@@ -48,7 +49,8 @@ export default class Fish extends React.Component {
           <Loader />
         ) : (
           <>
-          <AppModal title={'Add some Decoration'} buttonLabel={'Add Décor'}>
+          <AppModal title={'Add some Decoration'} buttonLabel={'Add Fish'}>
+            <FishForm onUpdate={this.getFish}/>
           </AppModal>
             <h2>Your Fish</h2>
             <div className="d-flex flex-wrap container">{showFish()}</div>
