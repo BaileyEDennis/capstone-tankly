@@ -24,6 +24,7 @@ export default class Fish extends React.Component {
         deleteFishofTanks(fish.firebaseKey);
       });
     });
+    this.getFish();
   }
 
   componentDidMount() {
@@ -63,7 +64,7 @@ export default class Fish extends React.Component {
           <Loader />
         ) : (
           <>
-          <AppModal title={'Add some Decoration'} buttonLabel={'Add Fish'}>
+          <AppModal title={'Add Fish'} buttonLabel={'Add Fish'}>
             <FishForm onUpdate={this.getFish}/>
           </AppModal>
             <h2>Your Fish</h2>
