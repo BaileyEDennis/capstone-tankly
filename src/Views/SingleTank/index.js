@@ -1,7 +1,7 @@
 import React from 'react';
 import { getSingleDecoration } from '../../Helpers/data/decorData';
-import { getTankDecors, getSingleTank } from '../../Helpers/data/tankData';
-import { getTankFish, getSingleFish } from '../../Helpers/data/fishData';
+import { getTankDecors, getSingleTank, getFishInTanks } from '../../Helpers/data/tankData';
+import { getSingleFish } from '../../Helpers/data/fishData';
 import DecorCard from '../../Components/Cards/DecorCard';
 import FishCard from '../../Components/Cards/FishCard';
 // import TankForm from '../../Components/Forms/TankForm';
@@ -39,7 +39,7 @@ export default class SingleTank extends React.Component {
     return Promise.all([...decorArray]);
   });
 
-  getFish = (tankId) => getTankFish(tankId).then((response) => {
+  getFish = (tankId) => getFishInTanks(tankId).then((response) => {
     const fishArray = [];
     response.forEach((item) => {
       fishArray.push(getSingleFish(item.fishId));

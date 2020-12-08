@@ -1,5 +1,10 @@
 import React from 'react';
-import { getUserFish } from '../../Helpers/data/fishData';
+import {
+  getUserFish,
+  deleteFish,
+  getTankFish,
+  deleteFishofTanks,
+} from '../../Helpers/data/fishData';
 import FishCard from '../../Components/Cards/FishCard';
 import Loader from '../../Components/Loader';
 import getUid from '../../Helpers/data/authData';
@@ -11,6 +16,15 @@ export default class Fish extends React.Component {
     fishes: [],
     loading: true,
   };
+
+  deleteAFish = (firebaseKey) => {
+    deleteFish(firebaseKey);
+    getTankFish(firebaseKey).then((response) => {
+      response.forEach((fish) => {
+        deleteFishofTanks(fish.firebaseKey);
+      });
+    });
+  }
 
   componentDidMount() {
     this.getFish();
@@ -41,7 +55,7 @@ export default class Fish extends React.Component {
   render() {
     const { fishes, loading } = this.state;
     const showFish = () => fishes.map((fish) => (
-      <FishCard key={fish.firebaseKey} fish={fish} onUpdate={this.getDecs} />
+      <FishCard key={fish.firebaseKey} fish={fish} fishDataFunc={this.deleteAFish} onUpdate={this.getFish} />
     ));
     return (
       <>

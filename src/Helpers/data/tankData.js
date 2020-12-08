@@ -47,9 +47,23 @@ const getTanks = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getFishInTanks = (tankId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tank-fish.json?orderBy="tankId"&equalTo="${tankId}"`).then((response) => {
+    const fishResponse = response.data;
+    const fishArray = [];
+    if (fishResponse) {
+      Object.keys(fishResponse).forEach((item) => {
+        fishArray.push(fishResponse[item]);
+      });
+    }
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
 export {
   getAllUserTanks,
   getTankDecors,
   getSingleTank,
   getTanks,
+  getFishInTanks,
 };
