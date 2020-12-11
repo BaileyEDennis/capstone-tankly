@@ -1,5 +1,7 @@
 import axios from 'axios';
 import ApiKeys from '../apiKeys';
+import { deleteFish } from './fishData';
+import { deleteDecor } from './decorData';
 
 const baseUrl = ApiKeys.databaseURL;
 
@@ -60,10 +62,43 @@ const getFishInTanks = (tankId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const createTank = (object) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/tanks.json`, object)
+    .then((response) => {
+      axios.patch(`${baseUrl}/tanks/${response.data.name}.json`, { firebaseKey: response.data.name }).then(resolve);
+    }).catch((error) => reject(error));
+});
+
+const updateTank = (object) => new Promise((resolve, reject) => {
+  axios.patch(`${baseUrl}/tanks/${object.firebaseKey}.json`, object)
+    .then(resolve).catch((error) => reject(error));
+});
+
+const deleteTank = (tankId) => {
+  getSingleTank(tankId).then((response) => {
+    axios.delete(`${baseUrl}/tanks/${response.firebaseKey}.json`);
+  });
+  getTankDecors(tankId)
+    .then((response) => {
+      response.forEach((decor) => {
+        deleteDecor(decor.decorId);
+      });
+    });
+  getFishInTanks(tankId)
+    .then((response) => {
+      response.forEach((fish) => {
+        deleteFish(fish.fishId);
+      });
+    });
+};
+
 export {
   getAllUserTanks,
   getTankDecors,
   getSingleTank,
   getTanks,
   getFishInTanks,
+  createTank,
+  updateTank,
+  deleteTank,
 };

@@ -1,11 +1,22 @@
 import React from 'react';
-import { getSingleDecoration } from '../../Helpers/data/decorData';
+import getUid from '../../Helpers/data/authData';
+import {
+  getSingleDecoration,
+  deleteDecor,
+  getTankDecor,
+  deleteDecorofTanks,
+  getUserDecor,
+} from '../../Helpers/data/decorData';
 import { getTankDecors, getSingleTank, getFishInTanks } from '../../Helpers/data/tankData';
-import { getSingleFish } from '../../Helpers/data/fishData';
+import {
+  getSingleFish,
+  getTankFish,
+  deleteFish,
+  deleteFishofTanks,
+  getUserFish,
+} from '../../Helpers/data/fishData';
 import DecorCard from '../../Components/Cards/DecorCard';
 import FishCard from '../../Components/Cards/FishCard';
-// import TankForm from '../../Components/Forms/TankForm';
-// import AppModal from '../../Components/Modal';
 
 export default class SingleTank extends React.Component {
   state = {
@@ -13,6 +24,28 @@ export default class SingleTank extends React.Component {
     decor: [],
     fish: [],
   };
+
+  deleteAFish = (firebaseKey) => {
+    deleteFish(firebaseKey);
+    getTankFish(firebaseKey).then((response) => {
+      response.forEach((fish) => {
+        deleteFishofTanks(fish.firebaseKey);
+      });
+    }).then(
+      this.getFish(),
+    );
+  }
+
+  deleteADecoration = (firebaseKey) => {
+    deleteDecor(firebaseKey);
+    getTankDecor(firebaseKey).then((response) => {
+      response.forEach((fish) => {
+        deleteDecorofTanks(fish.firebaseKey);
+      });
+    }).then(
+      this.getDecor(),
+    );
+  }
 
   componentDidMount() {
     const TankId = this.props.match.params.id;
@@ -47,22 +80,42 @@ export default class SingleTank extends React.Component {
     return Promise.all([...fishArray]);
   });
 
+  setFish = () => {
+    const currentUserId = getUid();
+    getUserFish(currentUserId).then((response) => {
+      this.setState(
+        {
+          fish: response,
+        },
+      );
+    });
+  };
+
+  setDecor = () => {
+    const currentUserId = getUid();
+    getUserDecor(currentUserId).then((response) => {
+      this.setState(
+        {
+          decorations: response,
+        },
+      );
+    });
+  };
+
   render() {
     const { decor, fish, tank } = this.state;
-    const renderDecor = () => decor.map((dec) => (<DecorCard key={dec.firebaseKey} decor={dec} onUpdate={this.getDecor}/>));
-    const renderFish = () => fish.map((ghoti) => (<FishCard key={ghoti.firebaseKey} fish={ghoti} />));
+    const renderDecor = () => decor.map((dec) => (
+      <DecorCard key={dec.firebaseKey}
+      decor={dec}
+      onUpdate={this.setDecor}
+      decorDataFunc={this.deleteADecoration} />));
+    const renderFish = () => fish.map((ghoti) => (
+      <FishCard key={ghoti.firebaseKey}
+      fish={ghoti}
+      onUpdate={this.setFish}
+      fishDataFunc={this.deleteAFish} />));
     return (
       <div>
-        {/* <AppModal
-          title={'Update Board'}
-          buttonLabel={'Update Board'}
-          btnColor={'danger'}
-          icon={'fa-plus-circle'}
-        >
-          {Object.keys(tank).length && (
-            <TankForm tank={tank} onUpdate={this.getTankInfo} />
-          )}
-        </AppModal> */}
         <h1>{tank.name}</h1>
         <div className="d-flex flex-wrap container">{renderDecor()}</div>
         <div className="d-flex flex-wrap container">{renderFish()}</div>
