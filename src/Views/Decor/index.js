@@ -1,9 +1,15 @@
 import React from 'react';
-import { getUserDecor } from '../../Helpers/data/decorData';
+import {
+  deleteDecor,
+  getTankDecor,
+  getUserDecor,
+  deleteDecorofTanks,
+} from '../../Helpers/data/decorData';
 import DecorCard from '../../Components/Cards/DecorCard';
 import Loader from '../../Components/Loader';
 import getUid from '../../Helpers/data/authData';
 import AppModal from '../../Components/Modal';
+import DecorForm from '../../Components/Forms/DecorForm';
 
 export default class Decor extends React.Component {
   state = {
@@ -11,11 +17,21 @@ export default class Decor extends React.Component {
     loading: true,
   };
 
-  componentDidMount() {
-    this.getDecs();
+  deleteADecoration = (firebaseKey) => {
+    deleteDecor(firebaseKey);
+    getTankDecor(firebaseKey).then((response) => {
+      response.forEach((fish) => {
+        deleteDecorofTanks(fish.firebaseKey);
+      });
+    });
+    this.getDecor();
   }
 
-  getDecs = () => {
+  componentDidMount() {
+    this.getDecor();
+  }
+
+  getDecor = () => {
     const currentUserId = getUid();
     getUserDecor(currentUserId).then((response) => {
       this.setState(
@@ -39,8 +55,8 @@ export default class Decor extends React.Component {
 
   render() {
     const { decorations, loading } = this.state;
-    const showDecor = () => decorations.map((decor) => (
-      <DecorCard key={decor.firebaseKey} decor={decor} onUpdate={this.getDecs} />
+    const showDecor = () => decorations.map((dec) => (
+      <DecorCard key={dec.firebaseKey} decor={dec} decorDataFunc={this.deleteADecoration} onUpdate={this.getDecor} />
     ));
     return (
       <>
@@ -48,9 +64,10 @@ export default class Decor extends React.Component {
           <Loader />
         ) : (
           <>
-          <AppModal title={'Add some Decoration'} buttonLabel={'Add Décor'}>
+          <AppModal title={'Add some Decoration'} buttonLabel={'Add Decor'}>
+            <DecorForm onUpdate={this.getDecor}/>
           </AppModal>
-            <h2>Your Décor</h2>
+            <h2>Your Decor</h2>
             <div className="d-flex flex-wrap container">{showDecor()}</div>
           </>
         )}

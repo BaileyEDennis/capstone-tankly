@@ -15,7 +15,7 @@ export default class FishForm extends Component {
   state = {
     breed: this.props.fish?.breed || '',
     firebaseKey: this.props.fish?.firebaseKey || '',
-    imageUrl: this.props.imageUrl?.imgUrl || '',
+    imageUrl: this.props.imageUrl?.imageUrl || '',
     notes: this.props.fish?.notes || '',
     sex: this.props.fish?.sex || '',
     private: this.props.fish?.private || false,
@@ -147,7 +147,7 @@ export default class FishForm extends Component {
               required
             />
           </div>
-          <label>Notes</label>
+          <label><strong>Notes</strong></label>
           <div>
             <input
               type='text'

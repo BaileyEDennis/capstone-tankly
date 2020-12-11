@@ -64,7 +64,7 @@ export default class Fish extends React.Component {
           <Loader />
         ) : (
           <>
-          <AppModal title={'Add Fish'} buttonLabel={'Add Fish'}>
+          <AppModal title={'Add some Decoration'} buttonLabel={'Add Fish'}>
             <FishForm onUpdate={this.getFish}/>
           </AppModal>
             <h2>Your Fish</h2>
