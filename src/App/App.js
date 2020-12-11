@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import fbConnection from '../Helpers/data/connection';
 import NavBar from '../Components/NavBar';
 import Routes from '../Helpers/routes';
+import Auth from '../Components/Auth';
 
 fbConnection();
 
@@ -29,12 +30,19 @@ class App extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <div className='App'>
+      <>
+      {user ? (
+        <div className='App'>
         <Router>
           <NavBar user={user} />
           <Routes user={user} />
         </Router>
       </div>
+      ) : (
+        <Auth />
+      )
+  }
+      </>
     );
   }
 }
