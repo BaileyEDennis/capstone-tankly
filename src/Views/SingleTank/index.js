@@ -32,7 +32,7 @@ export default class SingleTank extends React.Component {
         deleteFishofTanks(fish.firebaseKey);
       });
     }).then(
-      this.getFish(),
+      this.setFish(),
     );
   }
 
@@ -43,7 +43,7 @@ export default class SingleTank extends React.Component {
         deleteDecorofTanks(fish.firebaseKey);
       });
     }).then(
-      this.getDecor(),
+      this.setDecor(),
     );
   }
 
