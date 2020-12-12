@@ -13,6 +13,7 @@ This is my front end capstone project for Nashville Software School. This site i
 
 ## Deployment
 [![Netlify Status](https://api.netlify.com/api/v1/badges/de43f06a-22be-4c4d-90e8-f3f04c686b0b/deploy-status)](https://app.netlify.com/sites/tankly/deploys)
+
 [see it here](https://tankly.netlify.app/)
 ## Demo Video
 Coming Soon!
