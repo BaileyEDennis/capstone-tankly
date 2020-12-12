@@ -5,18 +5,17 @@ import TankForm from '../Forms/TankForm';
 
 export default function DecorCard({ tank, tankDataFunc, onUpdate }) {
   return (
-    <div className="Goat col-3" id={tank.firebaseKey}>
+    <div className="Fish col-3" id={tank.firebaseKey}>
       <div className="card">
         <Link to={`/tanks/${tank.firebaseKey}`}>
           <img src={tank.imageUrl} className="card-img-top" alt="..." />
         </Link>
         <div className="card-body">
           <h5 className="card-title">{tank.name}</h5>
-          <p className="card-text">Type: {tank.type}</p>
-          <p className="card-text">{tank.notes}</p>
+          <p className="card-text">{tank.description}</p>
           <div className="card-btns">
             <AppModal
-              title={'Update Your Decorations'}
+              title={'Update Your Aquarium'}
               buttonLabel={'Update tank'}
             >
               <TankForm tank={tank} onUpdate={onUpdate}></TankForm>

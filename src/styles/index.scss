@@ -5,7 +5,20 @@
 @import 'home';
 @import 'tanks';
 @import 'auth';
+@import 'singleView';
+@import "fish";
+@import 'decorations';
 
-body {
-  background-color: $favColor;
+.spinner-border {
+  color: white;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  .modal-header  {
+    background-color: rgba(116, 160, 100, 0.9);
+  }
+  .modal-body {
+    background-color: rgba(116, 160, 100, 0.6);
+  }
 }

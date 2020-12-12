@@ -10,7 +10,10 @@ export default function FishCard({ fish, fishDataFunc, onUpdate }) {
         <div className="card-body">
           <h5 className="card-title">{fish.breed}</h5>
           <p className="card-text">Sex: {fish.sex}</p>
+          <div id="notes">
+          <h6>Notes:</h6>
           <p className="card-text">{fish.notes}</p>
+          </div>
           <div className="card-btns">
             <AppModal
               title={'Update Your Fish'}

@@ -47,7 +47,7 @@ export default class Tanks extends React.Component {
         deleteFishofTanks(fish.firebaseKey);
       });
     }).then(
-      this.getTanks(),
+      this.getTanks,
     );
   }
 
@@ -64,7 +64,7 @@ export default class Tanks extends React.Component {
   render() {
     const { tanks, loading } = this.state;
     const showTanks = () => tanks.map((tank) => (
-        <TankCard key={tank.firebaseKey} tank={tank} tankDataFunc={this.deleteATank}/>
+        <TankCard key={tank.firebaseKey} tank={tank} tankDataFunc={this.deleteATank} onUpdate={this.getTanks}/>
     ));
     return (
       <>
@@ -72,11 +72,11 @@ export default class Tanks extends React.Component {
           <Loader />
         ) : (
           <div className='tank-page'>
-          <AppModal title={'Create Tank'} buttonLabel={'Create Tank'}>
-            <TankForm onUpdate={this.getTanks} />
-          </AppModal>
             <h2>My Aquariums</h2>
-            <div className="d-flex flex-wrap container card-area">{showTanks()}</div>
+          <AppModal title={'Create a new aquarium'} buttonLabel={'New Tank'}>
+            <TankForm onUpdate={this.getTanks}/>
+          </AppModal>
+            <div className="d-flex justify-content-start card-area">{showTanks()}</div>
           </div>
         )}
       </>

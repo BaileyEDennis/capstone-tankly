@@ -63,13 +63,13 @@ export default class Decor extends React.Component {
         {loading ? (
           <Loader />
         ) : (
-          <>
-          <AppModal title={'Add some Decoration'} buttonLabel={'Add Decor'}>
-            <DecorForm onUpdate={this.getDecor}/>
-          </AppModal>
+          <div className="decor-page">
             <h2>Your Decor</h2>
-            <div className="d-flex flex-wrap container">{showDecor()}</div>
-          </>
+            <AppModal title={'Add decoration to your aquarium'} buttonLabel={'New Decor'}>
+              <DecorForm onUpdate={this.getDecor}/>
+            </AppModal>
+            <div className="d-flex justify-content-start card-area">{showDecor()}</div>
+          </div>
         )}
       </>
     );

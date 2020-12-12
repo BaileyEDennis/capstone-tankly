@@ -63,13 +63,13 @@ export default class Fish extends React.Component {
         {loading ? (
           <Loader />
         ) : (
-          <>
-          <AppModal title={'Add some Decoration'} buttonLabel={'Add Fish'}>
-            <FishForm onUpdate={this.getFish}/>
-          </AppModal>
+          <div className="fishy-page">
             <h2>Your Fish</h2>
-            <div className="d-flex flex-wrap container">{showFish()}</div>
-          </>
+            <AppModal title={'Add fish to your Aquarium'} buttonLabel={'New Fish'}>
+              <FishForm onUpdate={this.getFish}/>
+            </AppModal>
+            <div className="d-flex justify-content-start card-area">{showFish()}</div>
+          </div>
         )}
       </>
     );

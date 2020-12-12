@@ -10,12 +10,10 @@ export default class TankForm extends Component {
     firebaseKey: this.props.tank?.firebaseKey || '',
     imageUrl: this.props.tank?.imageUrl || '',
     name: this.props.tank?.name || '',
-    private: this.props.fish?.private || false,
+    private: this.props.tank?.private || false,
     userId: this.props.tank?.UserId || '',
     tanks: [],
   }
-
-  tankRef = React.createRef();
 
   privateRef = React.createRef();
 
@@ -76,7 +74,7 @@ export default class TankForm extends Component {
         userId: this.state.userId,
       };
       updateTank(newTank).then(() => {
-        this.props.onUpdate?.(this.props.fish.firebaseKey);
+        this.props.onUpdate?.(this.props.tank.firebaseKey);
         this.setState({ success: true });
       });
     }
@@ -93,11 +91,11 @@ export default class TankForm extends Component {
       <>
         {success && (
           <div className='alert alert-success' role='alert'>
-            Your Tank was Created
+            Success!
           </div>
         )}
         <form onSubmit={this.handleSubmit}>
-        <label>Tank Name</label>
+        <label><strong>Aquarium Name</strong></label>
           <div>
             <input
               type='text'
@@ -109,7 +107,7 @@ export default class TankForm extends Component {
               required
             />
           </div>
-          <label><strong>description</strong></label>
+          <label><strong>Description</strong></label>
           <div>
             <input
               type='text'
@@ -121,12 +119,12 @@ export default class TankForm extends Component {
               required
             />
           </div>
-          <label>Public or Private</label>
+          <label><strong>Public or Private?</strong></label>
           <select ref={this.privateRef} className='form-control form-control-lg m-2' required>
             <option value='true'>Private</option>
             <option value='false'>Public</option>
           </select>
-          <label>Add an Image</label>
+          <label><strong>Add an Image</strong></label>
           <div>
             <input
               type='url'
