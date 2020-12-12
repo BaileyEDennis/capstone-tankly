@@ -96,7 +96,7 @@ export default class SingleTank extends React.Component {
     getUserDecor(currentUserId).then((response) => {
       this.setState(
         {
-          decorations: response,
+          decor: response,
         },
       );
     });
@@ -119,9 +119,7 @@ export default class SingleTank extends React.Component {
         <h2>{tank.name}</h2>
         <div className="render-region">
         <h4>{tank.name}'s flora</h4>
-          <div className="d-flex justify-content-space-between card-area" id="decor-area">
-            {renderDecor()}
-          </div>
+          <div className="d-flex justify-content-space-between card-area" id="decor-area">{renderDecor()}</div>
           <h4>{tank.name}'s fauna</h4>
           <div className="d-flex justify-content-space-between card-area" id="fish-area">{renderFish()}</div>
         </div>

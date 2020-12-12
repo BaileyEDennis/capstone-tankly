@@ -15,7 +15,7 @@ export default class DecorForm extends Component {
   state = {
     name: this.props.decor?.name || '',
     firebaseKey: this.props.decor?.firebaseKey || '',
-    imageUrl: this.props.imageUrl?.imageUrl || '',
+    imageUrl: this.props.decor?.imageUrl || '',
     notes: this.props.decor?.notes || '',
     type: this.props.decor?.type || '',
     userId: this.props.decor?.userId || '',
@@ -126,11 +126,11 @@ export default class DecorForm extends Component {
       <>
         {success && (
           <div className='alert alert-success' role='alert'>
-            Your Decoration was Created
+            Success!
           </div>
         )}
         <form onSubmit={this.handleSubmit}>
-        <label>Decor Name</label>
+        <label><strong>Decor Name</strong></label>
           <div>
             <input
               type='text'
@@ -154,7 +154,7 @@ export default class DecorForm extends Component {
               required
             />
           </div>
-          <label>Type</label>
+          <label><strong>Type</strong></label>
           <div>
             <input
               type='text'
@@ -166,14 +166,14 @@ export default class DecorForm extends Component {
               required
             />
           </div>
-          <label>Select A Board</label>
+          <label><strong>Select A Board</strong></label>
           <select ref={this.tankRef} label='Select A Board'className='form-control form-control-lg m-2'>
             {Object.keys(tanks).length
             && tanks.map((tank) => (
               <option key={tank.firebaseKey} value={tank.firebaseKey}>{tank.name}</option>
             ))}
           </select>
-          <label>Add an Image</label>
+          <label><strong>Add an Image</strong></label>
           <div>
             <input
               type='url'

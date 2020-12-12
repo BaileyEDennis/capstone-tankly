@@ -15,17 +15,14 @@ export default class FishForm extends Component {
   state = {
     breed: this.props.fish?.breed || '',
     firebaseKey: this.props.fish?.firebaseKey || '',
-    imageUrl: this.props.imageUrl?.imageUrl || '',
+    imageUrl: this.props.fish?.imageUrl || '',
     notes: this.props.fish?.notes || '',
     sex: this.props.fish?.sex || '',
-    private: this.props.fish?.private || false,
     userId: this.props.fish?.userId || '',
     tanks: [],
   };
 
   tankRef = React.createRef();
-
-  privateRef = React.createRef();
 
   componentDidMount() {
     const userId = getUser();
@@ -68,7 +65,6 @@ export default class FishForm extends Component {
         imageUrl: this.state.imageUrl,
         notes: this.state.notes,
         sex: this.state.sex,
-        private: this.privateRef.current.value,
         userId: this.state.userId,
       };
       createFish(newFish).then((response) => {
@@ -97,7 +93,6 @@ export default class FishForm extends Component {
         imageUrl: this.state.imageUrl,
         notes: this.state.notes,
         sex: this.state.sex,
-        private: this.privateRef.current.value,
         userId: this.state.userId,
       };
       updateFish(newFish).then((response) => {
@@ -131,11 +126,11 @@ export default class FishForm extends Component {
       <>
         {success && (
           <div className='alert alert-success' role='alert'>
-            Your Fish was Created
+            Success!
           </div>
         )}
         <form onSubmit={this.handleSubmit}>
-        <label>Fish Breed</label>
+        <label><strong>Fish Breed</strong></label>
           <div>
             <input
               type='text'
@@ -159,7 +154,7 @@ export default class FishForm extends Component {
               required
             />
           </div>
-          <label>Gender</label>
+          <label><strong>Gender</strong></label>
           <div>
             <input
               type='text'
@@ -171,19 +166,14 @@ export default class FishForm extends Component {
               required
             />
           </div>
-          <label>Public or Private</label>
-          <select ref={this.privateRef} className='form-control form-control-lg m-2' required>
-            <option value='true'>Private</option>
-            <option value='false'>Public</option>
-          </select>
-          <label>Select A Board</label>
+          <label><strong>Select A Board</strong></label>
           <select ref={this.tankRef} label='Select A Board'className='form-control form-control-lg m-2'>
             {Object.keys(tanks).length
             && tanks.map((tank) => (
               <option key={tank.firebaseKey} value={tank.firebaseKey}>{tank.name}</option>
             ))}
           </select>
-          <label>Add an Image</label>
+          <label><strong>Add an Image</strong></label>
           <div>
             <input
               type='url'
