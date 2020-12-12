@@ -2,7 +2,7 @@ $StyleFont: 'Pacifico', cursive;
 $MainFont: 'Montserrat', sans-serif;
 $SecondaryFont: 'Open Sans', sans-serif;
 
-.tank-page {
+.public-page {
   .button-region {
     display: flex;
     justify-content: center;
@@ -31,7 +31,7 @@ $SecondaryFont: 'Open Sans', sans-serif;
     background-color: rgba(116, 160, 100, 0.8);
     color: lightgray;
     border-color: darkgreen;
-    text-align: center;
+    text-align: left;
     font-family: $SecondaryFont;
     img {
       width: 100%;
@@ -43,6 +43,26 @@ $SecondaryFont: 'Open Sans', sans-serif;
       flex-direction: column;
       align-items: center;
       font-family: $MainFont;
+      margin-top: 2rem;
     }
+    #notes {
+      background-color: gray;
+      padding-bottom: 4rem;
+      padding-left: .25rem;
+      text-align: justify;
+      border: .5px solid black;
+      box-shadow: 3px 6px black;
+      
+    }
+  }
+  #decor-area {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #fish-area {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
