@@ -59,6 +59,7 @@ export default class TankForm extends Component {
         name: this.state.name,
         private: this.privateRef.current.value,
         userId: this.state.userId,
+        likes: 1,
       };
       createTank(newTank).then(() => {
         this.props.onUpdate?.(this.props.tankId);

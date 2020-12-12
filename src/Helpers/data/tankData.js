@@ -96,6 +96,12 @@ const deleteTank = (tankId) => {
     });
 };
 
+const getPublicTanks = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tanks.json?orderBy="private"&equalTo="false"`).then((response) => {
+    resolve(Object.values(response.data));
+  }).catch((error) => reject(error));
+});
+
 export {
   getAllUserTanks,
   getTankDecors,
@@ -105,4 +111,5 @@ export {
   createTank,
   updateTank,
   deleteTank,
+  getPublicTanks,
 };
