@@ -8,7 +8,7 @@ import {
 import TankCard from '../../Components/Cards/TankCard';
 import TankForm from '../../Components/Forms/TankForm';
 import Loader from '../../Components/Loader';
-import getUid from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import AppModal from '../../Components/Modal';
 import { deleteFishofTanks } from '../../Helpers/data/fishData';
 import { deleteDecorofTanks } from '../../Helpers/data/decorData';

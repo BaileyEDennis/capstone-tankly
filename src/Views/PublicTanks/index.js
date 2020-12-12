@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { getPublicTanks, updateTank, getSingleTank } from '../../Helpers/data/tankData';
+import { getPublicTanks } from '../../Helpers/data/tankData';
 import PublicTankCard from '../../Components/Cards/PublicCard';
 import Loader from '../../Components/Loader';
 
@@ -34,20 +34,9 @@ export default class PublicTanks extends Component {
     clearInterval(this.timer);
   }
 
-  setLikes = (firebaseKey) => {
-    getSingleTank(firebaseKey).then((response) => {
-      updateTank({
-        likes: response.likes + 1,
-        firebaseKey,
-      });
-    }).then(
-      this.getPubTanks,
-    );
-  }
-
   render() {
     const { pubTanks, loading } = this.state;
-    const showTanks = () => pubTanks.map((tank) => <PublicTankCard key={tank.firebaseKey} tank={tank} pubDataFunc={this.setLikes} onUpdate = {this.getPubTanks}/>);
+    const showTanks = () => pubTanks.map((tank) => <PublicTankCard key={tank.firebaseKey} tank={tank} onUpdate = {this.getPubTanks}/>);
     return (
       <>
         {loading ? (

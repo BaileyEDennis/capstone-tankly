@@ -25,44 +25,29 @@ $SecondaryFont: 'Open Sans', sans-serif;
     color: lightgray;
     font-family: $StyleFont;
   }
+  .card-area {
+    display: flex;
+    justify-content: space-evenly !important;
+  }
   .card {
     width: 20rem;
     height: auto;
-    background-color: rgba(116, 160, 100, 0.8);
-    color: lightgray;
+    background-color: rgba(116, 160, 100, 0.9);
+    color: white;
     border-color: darkgreen;
-    text-align: left;
+    text-align: justify;
     font-family: $SecondaryFont;
     img {
       width: 100%;
-      height: 15vw;
+      height: 15rem;
       object-fit: cover;
     }
-    .card-btns {
+    .reaction-button {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-family: $MainFont;
       margin-top: 2rem;
     }
-    #notes {
-      background-color: gray;
-      padding-bottom: 4rem;
-      padding-left: .25rem;
-      text-align: justify;
-      border: .5px solid black;
-      box-shadow: 3px 6px black;
-      
-    }
-  }
-  #decor-area {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  #fish-area {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 }

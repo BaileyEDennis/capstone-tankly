@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase/app';
 import { BrowserRouter as Router } from 'react-router-dom';
 import fbConnection from '../Helpers/data/connection';
+import { createUser } from '../Helpers/data/authData';
 import NavBar from '../Components/NavBar';
 import Routes from '../Helpers/routes';
 import Auth from '../Components/Auth';
@@ -17,6 +18,7 @@ class App extends React.Component {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
+        createUser({ uid: user.uid });
       } else {
         this.setState({ user: false });
       }

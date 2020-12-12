@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import getUser from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import {
   createDecor,
   updateDecor,
@@ -25,7 +25,7 @@ export default class DecorForm extends Component {
   tankRef = React.createRef();
 
   componentDidMount() {
-    const userId = getUser();
+    const userId = getUid();
     this.setState({ userId });
     this.tanksResponse(userId).then((response) => {
       this.setState({
@@ -144,7 +144,7 @@ export default class DecorForm extends Component {
           </div>
           <label><strong>Notes</strong></label>
           <div>
-            <input
+            <textarea
               type='text'
               name='notes'
               value={this.state.notes}

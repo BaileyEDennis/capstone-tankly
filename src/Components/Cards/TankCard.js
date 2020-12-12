@@ -5,7 +5,7 @@ import TankForm from '../Forms/TankForm';
 
 export default function DecorCard({ tank, tankDataFunc, onUpdate }) {
   return (
-    <div className="Fish col-3" id={tank.firebaseKey}>
+    <div className="Fish" id={tank.firebaseKey}>
       <div className="card">
         <Link to={`/tanks/${tank.firebaseKey}`}>
           <img src={tank.imageUrl} className="card-img-top" alt="..." />

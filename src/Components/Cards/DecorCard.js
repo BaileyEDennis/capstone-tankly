@@ -4,7 +4,7 @@ import DecorForm from '../Forms/DecorForm';
 
 export default function DecorCard({ decor, decorDataFunc, onUpdate }) {
   return (
-    <div className="Goat col-3" id={decor.firebaseKey}>
+    <div className="Decor" id={decor.firebaseKey}>
       <div className="card">
         <img src={decor.imageUrl} className="card-img-top" alt="..." />
         <div className="card-body">
