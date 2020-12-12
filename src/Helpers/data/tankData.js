@@ -5,13 +5,17 @@ import { deleteDecor } from './decorData';
 
 const baseUrl = ApiKeys.databaseURL;
 
-const getAllUserTanks = (uid) => new Promise((resolve, reject) => {
-  axios
-    .get(`${baseUrl}/tanks.json?orderBy="userId"&equalTo="${uid}"`)
-    .then((response) => {
-      resolve(Object.values(response.data));
-    })
-    .catch((error) => reject(error));
+const getAllUserTanks = (userId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tanks.json?orderBy="userId"&equalTo="${userId}"`).then((response) => {
+    const tankResponse = response.data;
+    const tankArray = [];
+    if (tankResponse) {
+      Object.keys(tankResponse).forEach((item) => {
+        tankArray.push(tankResponse[item]);
+      });
+    }
+    resolve(tankArray);
+  }).catch((error) => reject(error));
 });
 
 const getTankDecors = (tankId) => new Promise((resolve, reject) => {

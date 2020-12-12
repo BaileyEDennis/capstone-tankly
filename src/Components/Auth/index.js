@@ -13,11 +13,7 @@ export default class Auth extends Component {
   render() {
     return (
       <div className="Auth">
-        <h1>Welcome To Tankly</h1>
-        <h3>
-          Tankly is a dashboard to keep track of your aquariums, and all that
-          goes in it.
-        </h3>
+        <h1>Tankly</h1>
         <button className="btn btn-secondary" onClick={this.loginClickEvent}>
           <i className="fab fa-google"></i>oogle login
         </button>

@@ -18,7 +18,6 @@ export default function Home({ user }) {
 
   return (
     <div className='display-area'>
-      <h1>Welcome to Tankly!</h1>
       {loadComponent()}
     </div>
   );

@@ -32,7 +32,7 @@ export default class SingleTank extends React.Component {
         deleteFishofTanks(fish.firebaseKey);
       });
     }).then(
-      this.setFish(),
+      this.setFish,
     );
   }
 
@@ -43,7 +43,7 @@ export default class SingleTank extends React.Component {
         deleteDecorofTanks(fish.firebaseKey);
       });
     }).then(
-      this.setDecor(),
+      this.setDecor,
     );
   }
 
@@ -115,10 +115,16 @@ export default class SingleTank extends React.Component {
       onUpdate={this.setFish}
       fishDataFunc={this.deleteAFish} />));
     return (
-      <div>
-        <h1>{tank.name}</h1>
-        <div className="d-flex flex-wrap container">{renderDecor()}</div>
-        <div className="d-flex flex-wrap container">{renderFish()}</div>
+      <div className="single-view-page">
+        <h2>{tank.name}</h2>
+        <div className="render-region">
+        <h4>{tank.name}'s flora</h4>
+          <div className="d-flex justify-content-space-between card-area" id="decor-area">
+            {renderDecor()}
+          </div>
+          <h4>{tank.name}'s fauna</h4>
+          <div className="d-flex justify-content-space-between card-area" id="fish-area">{renderFish()}</div>
+        </div>
       </div>
     );
   }

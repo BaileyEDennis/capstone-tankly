@@ -24,7 +24,7 @@ export default function NavBar(props) {
   const toggle = () => setIsOpen(!isOpen);
   return (
     <div>
-      <Navbar color='dark' dark expand='md' className='justify-content-between'>
+      <Navbar expand='md' className='justify-content-between'>
         <Link className="navbar-brand" to='/'><i className="fas fa-fish"></i>  Tankly</Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
