@@ -102,6 +102,11 @@ const getPublicTanks = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const updateTankLikes = (object) => new Promise((resolve, reject) => {
+  axios.patch(`${baseUrl}/tanks/${object.firebaseKey}.json`, object)
+    .then(resolve).catch((error) => reject(error));
+});
+
 export {
   getAllUserTanks,
   getTankDecors,
@@ -112,4 +117,5 @@ export {
   updateTank,
   deleteTank,
   getPublicTanks,
+  updateTankLikes,
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import getUser from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import { createTank, updateTank, getAllUserTanks } from '../../Helpers/data/tankData';
 
 export default class TankForm extends Component {
@@ -18,7 +18,7 @@ export default class TankForm extends Component {
   privateRef = React.createRef();
 
   componentDidMount() {
-    const userId = getUser();
+    const userId = getUid();
     this.setState({ userId });
     this.tanksResponse(userId).then((response) => {
       this.setState({
@@ -59,7 +59,7 @@ export default class TankForm extends Component {
         name: this.state.name,
         private: this.privateRef.current.value,
         userId: this.state.userId,
-        likes: 1,
+        likes: 0,
       };
       createTank(newTank).then(() => {
         this.props.onUpdate?.(this.props.tankId);
@@ -110,7 +110,7 @@ export default class TankForm extends Component {
           </div>
           <label><strong>Description</strong></label>
           <div>
-            <input
+            <textarea
               type='text'
               name='description'
               value={this.state.description}

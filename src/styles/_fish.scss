@@ -29,6 +29,10 @@ $SecondaryFont: 'Open Sans', sans-serif;
     color: lightgray;
     font-family: $StyleFont;
   }
+  .card-area {
+    display: flex;
+    justify-content: space-evenly !important;
+  }
   .card {
     width: 20rem;
     height: auto;
@@ -39,7 +43,7 @@ $SecondaryFont: 'Open Sans', sans-serif;
     font-family: $SecondaryFont;
     img {
       width: 100%;
-      height: 15vw;
+      height: 15rem;
       object-fit: cover;
     }
     .card-btns {

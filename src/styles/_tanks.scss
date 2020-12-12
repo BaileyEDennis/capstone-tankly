@@ -25,17 +25,21 @@ $SecondaryFont: 'Open Sans', sans-serif;
     color: lightgray;
     font-family: $StyleFont;
   }
+  .card-area {
+    display: flex;
+    justify-content: space-evenly !important;
+  }
   .card {
-    width: 20rem;
+    width: 25rem;
     height: auto;
-    background-color: rgba(116, 160, 100, 0.8);
-    color: lightgray;
+    background-color: rgba(116, 160, 100, 0.9);
+    color: white;
     border-color: darkgreen;
-    text-align: center;
+    text-align: justify;
     font-family: $SecondaryFont;
     img {
       width: 100%;
-      height: 15vw;
+      height: 15rem;
       object-fit: cover;
     }
     .card-btns {

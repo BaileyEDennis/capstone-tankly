@@ -7,7 +7,7 @@ import {
 } from '../../Helpers/data/fishData';
 import FishCard from '../../Components/Cards/FishCard';
 import Loader from '../../Components/Loader';
-import getUid from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import AppModal from '../../Components/Modal';
 import FishForm from '../../Components/Forms/FishForm';
 

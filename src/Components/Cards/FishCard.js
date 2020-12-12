@@ -4,7 +4,7 @@ import FishForm from '../Forms/FishForm';
 
 export default function FishCard({ fish, fishDataFunc, onUpdate }) {
   return (
-    <div className="Goat col-3" id={fish.firebaseKey}>
+    <div className="Fish" id={fish.firebaseKey}>
       <div className="card">
         <img src={fish.imageUrl} className="card-img-top" alt="..." />
         <div className="card-body">

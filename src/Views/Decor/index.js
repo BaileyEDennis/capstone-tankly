@@ -7,7 +7,7 @@ import {
 } from '../../Helpers/data/decorData';
 import DecorCard from '../../Components/Cards/DecorCard';
 import Loader from '../../Components/Loader';
-import getUid from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import AppModal from '../../Components/Modal';
 import DecorForm from '../../Components/Forms/DecorForm';
 

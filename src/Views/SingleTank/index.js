@@ -1,5 +1,5 @@
 import React from 'react';
-import getUid from '../../Helpers/data/authData';
+import { getUid } from '../../Helpers/data/authData';
 import {
   getSingleDecoration,
   deleteDecor,
