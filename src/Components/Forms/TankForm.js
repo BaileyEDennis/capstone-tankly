@@ -115,7 +115,7 @@ export default class TankForm extends Component {
               name='description'
               value={this.state.description}
               onChange={this.handleChange}
-              placeholder='A breif description'
+              placeholder='A brief description'
               className='form-control form-control-lg m-1'
               required
             />

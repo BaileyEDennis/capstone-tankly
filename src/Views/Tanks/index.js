@@ -16,7 +16,6 @@ import { deleteDecorofTanks } from '../../Helpers/data/decorData';
 export default class Tanks extends React.Component {
   state = {
     tanks: [],
-    loading: true,
   };
 
   componentDidMount() {
@@ -30,7 +29,6 @@ export default class Tanks extends React.Component {
         {
           tanks: response,
         },
-        this.setLoading,
       );
     });
   };
@@ -51,24 +49,14 @@ export default class Tanks extends React.Component {
     );
   }
 
-  setLoading = () => {
-    this.timer = setInterval(() => {
-      this.setState({ loading: false });
-    }, 1000);
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   render() {
-    const { tanks, loading } = this.state;
+    const { tanks } = this.state;
     const showTanks = () => tanks.map((tank) => (
         <TankCard key={tank.firebaseKey} tank={tank} tankDataFunc={this.deleteATank} onUpdate={this.getTanks}/>
     ));
     return (
       <>
-        {loading ? (
+        {tanks.length === 0 ? (
           <Loader />
         ) : (
           <div className='tank-page'>

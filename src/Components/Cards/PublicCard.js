@@ -1,5 +1,10 @@
 import React from 'react';
-import { updateTankLikes } from '../../Helpers/data/tankData';
+import {
+  updateTankLikes,
+  likeAtank,
+  updateLikes,
+  getLikeJoin,
+} from '../../Helpers/data/tankData';
 
 export default class PublicTankCard extends React.Component {
   state = {
