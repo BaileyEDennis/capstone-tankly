@@ -14,7 +14,6 @@ import DecorForm from '../../Components/Forms/DecorForm';
 export default class Decor extends React.Component {
   state = {
     decorations: [],
-    loading: true,
   };
 
   deleteADecoration = (firebaseKey) => {
@@ -38,29 +37,18 @@ export default class Decor extends React.Component {
         {
           decorations: response,
         },
-        this.setLoading,
       );
     });
   };
 
-  setLoading = () => {
-    this.timer = setInterval(() => {
-      this.setState({ loading: false });
-    }, 1000);
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   render() {
-    const { decorations, loading } = this.state;
+    const { decorations } = this.state;
     const showDecor = () => decorations.map((dec) => (
       <DecorCard key={dec.firebaseKey} decor={dec} decorDataFunc={this.deleteADecoration} onUpdate={this.getDecor} />
     ));
     return (
       <>
-        {loading ? (
+        {decorations.length === 0 ? (
           <Loader />
         ) : (
           <div className="decor-page">

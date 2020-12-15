@@ -156,15 +156,18 @@ export default class FishForm extends Component {
           </div>
           <label><strong>Gender</strong></label>
           <div>
-            <input
-              type='text'
+            <select
+              label='sex'
               name='sex'
+              className='form-control form-control-lg m-2'
               value={this.state.sex}
               onChange={this.handleChange}
               placeholder='Gender'
-              className='form-control form-control-lg m-1'
-              required
-            />
+            >
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other or Unknown</option>
+            </select>
           </div>
           <label><strong>Select A Board</strong></label>
           <select ref={this.tankRef} label='Select A Board'className='form-control form-control-lg m-2'>

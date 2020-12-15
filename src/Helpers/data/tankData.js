@@ -107,6 +107,31 @@ const updateTankLikes = (object) => new Promise((resolve, reject) => {
     .then(resolve).catch((error) => reject(error));
 });
 
+const likeAtank = (object) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/tanks-likes.json`, object)
+    .then((response) => {
+      axios.patch(`${baseUrl}/tanks-likes/${response.data.name}.json`, { firebaseKey: response.data.name }).then(resolve);
+    }).catch((error) => reject(error));
+});
+
+const getLikeJoin = (userId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tanks-likes.json?orderBy="userId"&equalTo="${userId}"`).then((response) => {
+    const tankResponse = response.data;
+    const tankArray = [];
+    if (tankResponse) {
+      Object.keys(tankResponse).forEach((item) => {
+        tankArray.push(tankResponse[item]);
+      });
+    }
+    resolve(tankArray);
+  }).catch((error) => reject(error));
+});
+
+const updateLikes = (object) => new Promise((resolve, reject) => {
+  axios.patch(`${baseUrl}/tanks-likes/${object.firebaseKey}.json`, object)
+    .then(resolve).catch((error) => reject(error));
+});
+
 export {
   getAllUserTanks,
   getTankDecors,
@@ -118,4 +143,7 @@ export {
   deleteTank,
   getPublicTanks,
   updateTankLikes,
+  likeAtank,
+  updateLikes,
+  getLikeJoin,
 };

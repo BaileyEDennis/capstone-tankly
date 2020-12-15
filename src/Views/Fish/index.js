@@ -14,7 +14,6 @@ import FishForm from '../../Components/Forms/FishForm';
 export default class Fish extends React.Component {
   state = {
     fishes: [],
-    loading: true,
   };
 
   deleteAFish = (firebaseKey) => {
@@ -38,29 +37,18 @@ export default class Fish extends React.Component {
         {
           fishes: response,
         },
-        this.setLoading,
       );
     });
   };
 
-  setLoading = () => {
-    this.timer = setInterval(() => {
-      this.setState({ loading: false });
-    }, 1000);
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   render() {
-    const { fishes, loading } = this.state;
+    const { fishes } = this.state;
     const showFish = () => fishes.map((fish) => (
       <FishCard key={fish.firebaseKey} fish={fish} fishDataFunc={this.deleteAFish} onUpdate={this.getFish} />
     ));
     return (
       <>
-        {loading ? (
+        {fishes.length === 0 ? (
           <Loader />
         ) : (
           <div className="fishy-page">

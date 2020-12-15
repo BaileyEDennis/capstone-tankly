@@ -6,7 +6,6 @@ import Loader from '../../Components/Loader';
 export default class PublicTanks extends Component {
   state = {
     pubTanks: [],
-    loading: true,
   };
 
   componentDidMount() {
@@ -19,27 +18,16 @@ export default class PublicTanks extends Component {
         {
           pubTanks: resp,
         },
-        this.setLoading,
       );
     });
   };
 
-  setLoading = () => {
-    this.timer = setInterval(() => {
-      this.setState({ loading: false });
-    }, 1000);
-  };
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   render() {
-    const { pubTanks, loading } = this.state;
-    const showTanks = () => pubTanks.map((tank) => <PublicTankCard key={tank.firebaseKey} tank={tank} onUpdate = {this.getPubTanks}/>);
+    const { pubTanks } = this.state;
+    const showTanks = () => pubTanks.map((tank) => <PublicTankCard key={tank.firebaseKey} tank={tank} onUpdate = {this.getPubTanks} />);
     return (
       <>
-        {loading ? (
+        {pubTanks.length === 0 ? (
           <Loader />
         ) : (
           <div className='public-page'>
