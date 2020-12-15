@@ -9,7 +9,7 @@ export default function Home({ user }) {
     if (user === null) {
       component = <Loader />;
     } else if (user) {
-      component = <PublicTanks />;
+      component = <PublicTanks user={user}/>;
     } else {
       component = <Auth />;
     }

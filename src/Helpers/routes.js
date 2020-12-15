@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import SingleTank from '../Views/SingleTank';
 import Decor from '../Views/Decor';
 import Tanks from '../Views/Tanks';
 import Fish from '../Views/Fish';
@@ -13,6 +14,7 @@ export default function Routes({ user }) {
         <Route exact path="/tanks" component={() => <Tanks user={user}/>} />
         <Route exact path="/flora" component={() => <Decor user={user}/>} />
         <Route exact path="/fauna" component={() => <Fish user={user}/>} />
+        <Route exact path='/tanks/:id' component={(props) => <SingleTank user={user} {...props} />}/>
         <Route component={NotFound} />
       </Switch>
   );
