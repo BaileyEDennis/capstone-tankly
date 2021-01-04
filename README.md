@@ -16,4 +16,4 @@ This is my front end capstone project for Nashville Software School. This site i
 
 [see it here](https://tankly.netlify.app/)
 ## Demo Video
-Coming Soon!
+[see it here](https://www.loom.com/share/d668270a063b474987f2f887fc9917f2)
